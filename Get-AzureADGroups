@@ -1,18 +1,27 @@
+# First connect to the Azure Active Directory
 Connect-AzureAD
+
+#Set up the outputfile
 $OutputFile = Read-Host -Prompt "Enter the path and file name for the .csv file eg. C:\users\admin\desktop\filename.csv"   
 Out-File -FilePath $OutputFile -InputObject "Group DisplayName, Group Email, Member DisplayName, Member Email" -Encoding UTF8    
+
+#Get all the groups and start going them through
 $objGroups = Get-AzureADGroup -All $true | Sort-object objectid   
 Foreach ($objGroup in $objGroups)    
 {        
-   
+#Get all the members    
  write-host "Processing $($objGroup.DisplayName)..."  
 $objGMembers = Get-AzureADGroupMember -ObjectId $($objGroup.objectid)    
   
  write-host "Found $($objGMembers.Count) members..."    
-  
+ 
+ 
+#Why are these three here?
 $name = $_.objectid  
 $displayname = $_.displayname  
 $email = $_.proxyaddresses  
+
+#Write each member into the outputfile
 Foreach ($objMember in $objGMembers)    
     {    
    
