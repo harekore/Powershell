@@ -1,6 +1,5 @@
-# Connect to Exchange Online in Office365 
-Connect-EXOPSSession -UserPrincipalName miska.tarvainen@sofor.fi
-
+# Connect to Exchange Online in Office365 (xyz=username)
+Connect-EXOPSSession -UserPrincipalName xyz
 # Connect to AzureAD
 Connect-AzureAD
 
